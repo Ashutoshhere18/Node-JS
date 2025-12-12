@@ -47,7 +47,7 @@ app.put("/",(req,res)=>{
     let users=readData();
     const updatedUser=req.body;
     users=users.map((user)=>{
-        if(user.id===updatedUser.id){
+        if(user.id==updatedUser.id){
             return updatedUser;
         };
         return user;
