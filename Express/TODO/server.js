@@ -12,13 +12,15 @@ const _filename=fileURLToPath(import.meta.url);
 const _dirname=path.dirname(_filename);
 const filePath=path.join(_dirname,'db.json');
 
+
 const readFile=()=>{
 const todos=fs.readFileSync(filePath,"utf-8");
 return JSON.parse(todos);
 };
 
 const writeFile=(todos)=>{
-    fs.writeFileSync(filePath,JSON.stringify(todos))
+  // write with indentation and handle errors
+  fs.writeFileSync(filePath, JSON.stringify(todos, null, 2), 'utf-8');
 }
 
 //GET request
@@ -50,7 +52,7 @@ app.post("/",(req,res)=>{
    let todos= readFile();
    todos.push(req.body);
    writeFile(todos);
-   res.json({msg:"Todo added successfully!..."},todos);
+  return res.status(201).json({ msg: "Todo Added Successfully....", todos });
 });
 
 // PUT request
@@ -65,7 +67,7 @@ app.put("/",(req,res)=>{
         return todo;
     })
      writeFile(todos);
-     res.json({msg:"Todo Updated Successfully...."},todos);
+    return res.json({msg:"Todo Updated Successfully....", todos});
 });
 
 
@@ -77,7 +79,7 @@ app.delete("/",(req,res)=>{
    if(req.query.status==="isCompleted"){
       todos= todos.filter((todo)=>todo.status!=="isCompleted");
    writeFile(todos);
-  return res.json({msg:"Todos with isCompleted Status is deleted successfully!.."},todos);
+  return res.json({ msg: "Todos with isCompleted Status is deleted successfully!..", todos });
    }
    res.json({msg:"No valid query provided..."})
 })
