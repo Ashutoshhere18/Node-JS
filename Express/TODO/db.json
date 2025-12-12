@@ -1,23 +1,37 @@
 [
-    {
-        "title": "Morning Routine",
-        "description": "Taking bf early..",
-        "status": "isCompleted",
-        "dueDate": "11/12/2025",
-        "createdAT": "Morning"
-    },
-    {
-        "title": "POST Test",
-        "description": "from test",
-        "status": "isNotCompleted",
-        "dueDate": "12/12/2025",
-        "createdAT": "now"
-    },
-    {
-        "title": "Homework",
-        "description": "Revise async/await concepts",
-        "status": "isNotCompleted",
-        "dueDate": "2025-02-07",
-        "createdAt": "2025-01-07"
-    }
+  {
+    "title": "POST Test",
+    "description": "from test",
+    "status": "isNotCompleted",
+    "dueDate": "12/12/2025",
+    "createdAT": "now"
+  },
+  {
+    "title": "Homework",
+    "description": "Revise async/await concepts",
+    "status": "isNotCompleted",
+    "dueDate": "2025-02-07",
+    "createdAt": "2025-01-07"
+  },
+  {
+    "title": "Buy Groceries",
+    "description": "Buy milk, bread, and eggs from the supermarket",
+    "status": "isNotCompleted",
+    "dueDate": "2025-01-15",
+    "createdAt": "2025-01-10"
+  },
+  {
+    "title": "Gym Workout",
+    "description": "45 minutes workout and 15 minutes stretching",
+    "status": "isNotCompleted",
+    "dueDate": "2025-01-16",
+    "createdAt": "2025-01-11"
+  },
+  {
+    "title": "Prepare Presentation",
+    "description": "Create PPT for college seminar",
+    "status": "isCompleted",
+    "dueDate": "2025-01-20",
+    "createdAt": "2025-01-10"
+  }
 ]
