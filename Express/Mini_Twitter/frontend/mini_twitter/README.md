@@ -1,16 +1,121 @@
-# React + Vite
+# 🐦 Mini Twitter – React + Node.js Full Stack Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is my **first complete Full Stack project** built using **React (Frontend)** and **Node.js + Express (Backend)**.
+The project is inspired by **Twitter UI** and supports basic tweet operations with a clean, responsive interface.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Project Overview
 
-## React Compiler
+**Mini Twitter** allows users to:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* Add new tweets
+* View all tweets
+* Delete tweets
+* Experience a Twitter‑like UI (Left sidebar, center feed, right panel)
 
-## Expanding the ESLint configuration
+This project helped me understand **frontend–backend integration**, API handling, and UI structuring.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🛠 Tech Stack
+
+### Frontend
+
+* ⚛️ React (Vite)
+* 🎨 Bootstrap 5
+* 🧾 Custom CSS
+* 📡 Axios
+
+### Backend
+
+* 🟢 Node.js
+* 🚂 Express.js
+* 📄 JSON file (as database)
+* 🔁 REST API
+
+---
+
+## 📂 Project Structure
+
+```
+mini_twitter/
+│
+├── client/ (React)
+│   ├── src/
+│   │   ├── App.jsx
+│   │   ├── twitter.css
+│   │   ├── main.jsx
+│   │   └── index.css
+│   └── package.json
+│
+├── server/ (Node)
+│   ├── server.js
+│   ├── db.json
+│   └── package.json
+│
+└── README.md
+```
+
+---
+
+## ⚙️ Features
+
+* Add tweet using **Tweet button**
+* Display tweets in feed
+* Delete tweet using **Delete button**
+* Responsive UI (Desktop & Mobile)
+* Twitter‑like layout
+* API based data handling
+
+---
+
+## 🔌 API Endpoints
+
+| Method | Endpoint    | Description      |
+| ------ | ----------- | ---------------- |
+| GET    | /tweets     | Fetch all tweets |
+| POST   | /tweets     | Add new tweet    |
+| DELETE | /tweets/:id | Delete tweet     |
+
+---
+
+## 🎨 UI Reference
+
+UI is inspired by **Twitter/X** with:
+
+* Static left sidebar
+* Central tweet feed
+* Right suggestion panel
+* Dark themed layout
+
+---
+
+## 📚 What I Learned
+
+* React component structure
+* Axios API integration
+* Node & Express routing
+* CRUD operations
+* Frontend & backend connection
+* Responsive UI using Bootstrap
+
+---
+
+## 🧑‍💻 Author
+
+**Mishra Ashutosh**
+BCA Student | Full Stack Learner
+
+---
+
+## ⭐ Future Improvements
+
+* Edit Tweet
+* Like & Comment feature
+* Authentication
+* MongoDB integration
+
+---
+
+### 🔥 This project marks my **first step into Full Stack Development** 🚀

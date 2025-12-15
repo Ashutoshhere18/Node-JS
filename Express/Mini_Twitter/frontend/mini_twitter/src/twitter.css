@@ -1,0 +1,58 @@
+body {
+  background-color: #15202b;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  padding: 20px;
+}
+
+.menu-item {
+  padding: 10px;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 30px;
+}
+
+.menu-item:hover {
+  background-color: #22303c;
+}
+
+.tweet-box textarea {
+  background: transparent;
+  border: none;
+  color: white;
+  resize: none;
+}
+
+.tweet-box textarea:focus {
+  outline: none;
+}
+
+.tweet-card {
+  border-bottom: 1px solid #38444d;
+  padding: 15px;
+}
+
+.btn-tweet {
+  background-color: #1d9bf0;
+  border: none;
+  border-radius: 20px;
+  padding: 6px 20px;
+  color: white;
+  font-weight: bold;
+}
+
+.btn-tweet:hover {
+  background-color: #1a8cd8;
+}
+
+.trends {
+  background-color: #1e2732;
+  border-radius: 15px;
+  padding: 15px;
+}
