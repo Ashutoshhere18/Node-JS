@@ -17,6 +17,11 @@ The project is inspired by **Twitter UI** and supports basic tweet operations wi
 This project helped me understand **frontend–backend integration**, API handling, and UI structuring.
 
 ---
+.
+
+**🎥 Demo**
+📌 Project Demo Video
+
 
 ## 🛠 Tech Stack
 
