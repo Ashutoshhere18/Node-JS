@@ -14,13 +14,9 @@ const connectDB=async()=>{
   return db;
 }
 
-const addStudent=async()=>{
+const addStudent=async(student)=>{
     const db=await connectDB();
-    const result=await db.collection("student").insertOne({
-        name:"Abhinav",
-        age:18,
-        phoneNo:8250417214
-    });
+    const result=await db.collection("student").insertOne(student);
     return result;
 };
 
@@ -40,10 +36,12 @@ app.get("/api",async(req,res)=>{
 });
 
 app.post("/api",async(req,res)=>{
-  const data=await addStudent();
-  const record=req.body=data;
-  res.json(record);
-})
+  const student= req.body;
+  const result=await addStudent(student);
+  res.json(result);
+   console.log("Student added successfulyy..!");
+});
+
 
 app.listen(4000,()=>{
     console.log("Server Started at 4000...");
