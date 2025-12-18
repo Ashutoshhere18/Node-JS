@@ -1,5 +1,7 @@
 import express from "express"
 import {MongoClient} from "mongodb"
+import {ObjectId} from "mongodb"
+
 
 const app=express();
 app.use(express.json())
@@ -29,6 +31,23 @@ const data=await db.collection("student").find().toArray();
 return data;
 };
 
+const UpdateStudent=async(id,updatedData)=>{
+    const db=await connectDB();
+   const result =await db.collection("student").updateOne(
+        { _id:new ObjectId(id)},
+        {$set:updatedData}
+    );
+    return result;
+};
+
+const deleteStudent=async(id)=>{
+    const db=await connectDB();
+
+    const result=await db.collection("student").deleteOne(
+        {_id:new ObjectId(id)}
+    );
+    return result;
+}
 
 app.get("/api",async(req,res)=>{
     const  data= await readStudent();
@@ -42,6 +61,27 @@ app.post("/api",async(req,res)=>{
    console.log("Student added successfulyy..!");
 });
 
+app.put("/api/:id",async(req,res)=>{
+
+    const id=req.params.id;
+    const updatedData=req.body;
+//   const db=await connectDB();
+    const result= await UpdateStudent(id,updatedData);
+    if(result.matchedCount===0){
+       return res.status(404).json({message:"Student Not found..."})
+    }
+    res.json({message:"Student Updated successfully..."})
+});
+
+app.delete("/api/:id",async(req,res)=>{
+  const id=req.params.id;
+
+  const result=await deleteStudent(id);
+   if(result.deletedCount===0){
+       return res.status(404).json({message:"Student Not found..."})
+    }
+    res.json({message:"Student Deleted successfully..."})
+})
 
 app.listen(4000,()=>{
     console.log("Server Started at 4000...");
