@@ -26,7 +26,7 @@ const animalSchema=new mongoose.Schema({
 
 const animals=mongoose.model("animals",animalSchema);
 
-const Storage=multer.diskStorage({
+const storage=multer.diskStorage({
     destination:(req,file,cb)=>{
         cb(null,uploadPath);
     },
@@ -35,9 +35,9 @@ const Storage=multer.diskStorage({
     }
 })
 
-const uploads=multer({Storage})
+const upload=multer({storage})
 
-app.post("/",uploads.single("image"),async(req,res)=>{
+app.post("/",upload.single("image"),async(req,res)=>{
     const animal=new animals({
         name:"Tommy",
         category:"Dog",
