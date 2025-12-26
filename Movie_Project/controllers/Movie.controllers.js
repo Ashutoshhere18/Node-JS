@@ -1,10 +1,15 @@
-import mongoose from 'mongoose'
-import express from 'express'
+
 import movieModel from '../models/Movie.model.js'
 
 export const addMovie=async(req,res)=>{
     try{
-    const result= await movieModel.create(req.body);
+    const result= await movieModel.create({
+        title:req.body.title,
+        description:req.body.description,
+        genre:req.body.genre,
+        releaseYear:req.body.releaseYear,
+        moviePoster:req.file.filename
+    });
     res.json({message:"Movie Added Successfully!...",result});
     }catch(err){
      res.status(400).json({message:"Movie Not Added"});
@@ -17,5 +22,26 @@ export const getMovie=async(req,res)=>{
     res.json(result);
     }catch(err){
      res.json({mesaage:"Can't fetch Movies",err:err});
+    }
+}
+
+export const putMovie=async(req,res)=>{
+    try{
+        const result=await movieModel.findByIdAndUpdate(
+            req.params.id,
+            req.body
+        )
+        res.json({message:"Movie Updated!..",result})
+    }catch(err){
+    res.json({message:"Movie Not Updated",err:err})
+    }
+}
+
+export const deleteMovie=async(req,res)=>{
+    try{
+   const result= await movieModel.findByIdAndDelete(req.params.id)
+   res.json({message:"Movie Deleted!..",result})
+    }catch(err){
+    res.status(401).json({message:"Movie Not Deleted!",err:err})
     }
 }

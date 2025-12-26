@@ -1,14 +1,10 @@
 import express from 'express'
 import multer from 'multer'
-import {addMovie,getMovie} from "../controllers/Movie.controllers.js"
+import {addMovie,getMovie,putMovie,deleteMovie} from "../controllers/Movie.controllers.js"
 import path from 'path'
-import {fileURLToPath} from 'url'
+import {uploadPath} from '../server.js'
 
 const router=express.Router();
-
-const _filename=fileURLToPath(import.meta.url);
-const _dirname=path.dirname(_filename);
-const uploadPath=path.join(_dirname,"uploads");
 
 
 const storage=multer.diskStorage({
@@ -22,7 +18,9 @@ const storage=multer.diskStorage({
 
 const upload=multer({storage});
 
-router.post("/",upload.single("image"),addBook);
+router.post("/",upload.single("image"),addMovie);
 router.get("/",getMovie);
+router.put("/:id",upload.single("image"),putMovie);
+router.delete("/:id",deleteMovie);
 
 export default router;

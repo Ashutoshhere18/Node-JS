@@ -1,11 +1,17 @@
 import router from './router/Movie.router.js'
 import express from 'express'
 import {connectDB} from './config/db.js'
+import path from 'path'
+import {fileURLToPath} from 'url'
+
+const _filename=fileURLToPath(import.meta.url);
+const _dirname=path.dirname(_filename);
+export const uploadPath=path.join(_dirname,"uploads");
 
 const app=express();
 app.use(express.json());
 
-app.use("/movie",router);
+app.use("/",router);
 
 connectDB();
 
