@@ -9,4 +9,5 @@ export const movieSchema=new mongoose.Schema({
     moviePoster:{type:String}
 });
 
-export const movieModel= mongoose.model("Movie",movieSchema);
+ const movieModel= mongoose.model("Movie",movieSchema);
+ export default movieModel;

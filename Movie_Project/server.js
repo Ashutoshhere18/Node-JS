@@ -1,6 +1,6 @@
 import router from './router/Movie.router.js'
 import express from 'express'
-import connectDB from './config/db.js'
+import {connectDB} from './config/db.js'
 
 const app=express();
 app.use(express.json());
