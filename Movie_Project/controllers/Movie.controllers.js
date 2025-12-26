@@ -1,7 +1,11 @@
 
 import movieModel from '../models/Movie.model.js'
+import fs from 'fs'
+import path from 'path'
+import {_dirname} from '../server.js'
 
 export const addMovie=async(req,res)=>{
+  
     try{
     const result= await movieModel.create({
         title:req.body.title,
@@ -39,8 +43,14 @@ export const putMovie=async(req,res)=>{
 
 export const deleteMovie=async(req,res)=>{
     try{
-   const result= await movieModel.findByIdAndDelete(req.params.id)
-   res.json({message:"Movie Deleted!..",result})
+    const movie=await movieModel.findById(req.params.id);
+    const deletePath=path.join(_dirname,"uploads",movie.moviePoster)
+
+    if(fs.existsSync(deletePath)){
+  fs.unlinkSync(deletePath)
+    }
+    await movieModel.findByIdAndDelete(req.params.id)
+   res.json({message:"Movie Deleted!.."})
     }catch(err){
     res.status(401).json({message:"Movie Not Deleted!",err:err})
     }

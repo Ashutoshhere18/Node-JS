@@ -5,13 +5,14 @@ import path from 'path'
 import {fileURLToPath} from 'url'
 
 const _filename=fileURLToPath(import.meta.url);
-const _dirname=path.dirname(_filename);
+export const _dirname=path.dirname(_filename);
 export const uploadPath=path.join(_dirname,"uploads");
 
 const app=express();
 app.use(express.json());
 
 app.use("/",router);
+app.use("/uploads",express.static(uploadPath))
 
 connectDB();
 
