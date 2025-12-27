@@ -11,10 +11,11 @@ export const uploadPath=path.join(_dirname,"uploads");
 
 const app=express();
 app.use(express.json());
+app.use(cors());
 
 app.use("/",router);
 app.use("/uploads",express.static(uploadPath))
-app.use(cors());
+
 
 connectDB();
 
