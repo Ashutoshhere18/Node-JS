@@ -10,7 +10,7 @@ const[genre,setGenre]=useState("");
 const[releaseYear,setReleaseYear]=useState("");
 const[moviePoster,setMoviePoster]=useState(null);
 const[img,setImg]=useState("")
-const[id,setId]=useState(null);
+
 
 const handleSubmit=async()=>{
   const formdata=new FormData();
@@ -32,14 +32,7 @@ formdata.append("moviePoster",moviePoster);
   }
 }
 
-const handleDelete=async()=>{
 
-   try{
-   axios.delete("http://localhost:4040/")
-   }catch(err){
-
-   }
-}
 
   return (
     <>
@@ -50,7 +43,8 @@ const handleDelete=async()=>{
      <div><input type="number" value={releaseYear}  onChange={(e)=>setReleaseYear(e.target.value)}  placeholder="Enter release Year"/></div>
      <div><input type="file"  onChange={(e)=>setMoviePoster(e.target.files[0])} /></div>
      <button onClick={handleSubmit}>Submit</button>
-     <button> Delete</button>
+
+       
     </>
   )
 } 
