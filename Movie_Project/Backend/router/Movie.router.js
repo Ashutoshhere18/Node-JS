@@ -1,6 +1,6 @@
 import express from 'express'
 import multer from 'multer'
-import {addMovie,getMovie,putMovie,deleteMovie} from "../controllers/Movie.controllers.js"
+import {addMovie,getMovie,putMovie,deleteMovie} from "../models/Movie.model.js"
 import path from 'path'
 import {uploadPath} from '../server.js'
 

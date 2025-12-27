@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-import express from 'express'
+
 
 export const movieSchema=new mongoose.Schema({
     title:{type:String,required:true},
