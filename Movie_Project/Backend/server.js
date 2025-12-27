@@ -3,6 +3,7 @@ import express from 'express'
 import {connectDB} from './config/db.js'
 import path from 'path'
 import {fileURLToPath} from 'url'
+import cors from 'cors'
 
 const _filename=fileURLToPath(import.meta.url);
 export const _dirname=path.dirname(_filename);
@@ -13,6 +14,7 @@ app.use(express.json());
 
 app.use("/",router);
 app.use("/uploads",express.static(uploadPath))
+app.use(cors());
 
 connectDB();
 
