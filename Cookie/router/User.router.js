@@ -1,14 +1,16 @@
-import {signUp,signIn} from '../controllers/User.controller.js'
+import {signUp,signIn,home,signInHtml,signUpHtml} from '../controllers/User.controller.js'
 import express from 'express'
 import isAuthenticated from '../middleware/logger.js'
 
 const router=express.Router();
 
-router.post("/signup",signUp);
-router.post("/signin",signIn);
+router.post("/api/signup",signUp);
+router.post("/api/signin",signIn);
 
-router.get("/home",isAuthenticated,(req,res)=>{
-    res.json({message:"Home Page"});
-})
+router.get('/signin',signInHtml);
+router.get('/signup',signUpHtml);
+router.get('/home',isAuthenticated,home);
+
+
 
 export default router;

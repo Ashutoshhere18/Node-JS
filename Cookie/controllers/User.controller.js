@@ -1,6 +1,8 @@
 import userModel from '../Model/User.model.js'
 import mongoose from 'mongoose'
 
+import {homePath,signInPath,signUpPath} from '../server.js'
+
 export const signUp=async(req,res)=>{
 
     const result=await userModel.create({
@@ -28,3 +30,18 @@ export const signIn=async(req,res)=>{
 
   res.json({ message: "Signin successful!" });
 };
+
+export const home=async(req,res)=>{
+  // const users=await userModel.find();
+  // res.json(users);
+
+  res.sendFile(homePath);
+}
+
+export const signInHtml=async(req,res)=>{
+  res.sendFile(signInPath);
+}
+
+export const signUpHtml=async(req,res)=>{
+  res.sendFile(signUpPath);
+}
