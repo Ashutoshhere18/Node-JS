@@ -5,7 +5,7 @@ import router from './routes/UserRoute.js'
 const app=express();
 app.use(express.json());
 connectDB();
-app.use("/",router);
+app.use("/api",router);
 
 const PORT=4040;
 
