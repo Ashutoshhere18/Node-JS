@@ -22,7 +22,7 @@ export const signIn=async(req,res)=>{
     res.json({message:"user not exist "});
    }
 
-   const isMatch=await bcrypt.compare(password,userModel.password);
+   const isMatch=await bcrypt.compare(password,User.password);
    if(!isMatch){
     res.json({message:"Incorrect Password!.. "});
    }
@@ -32,5 +32,5 @@ export const signIn=async(req,res)=>{
 }
 
 export const home=async(req,res)=>{
-    res.json({msg:"home Page", user:req.user,token:req.token});
+    res.json({msg:"home Page", User:req.user,token:req.token});
 }
