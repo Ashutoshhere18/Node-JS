@@ -1,6 +1,5 @@
-import express from 'express'
-import {user} from '../models/AuthModel.js'
-import mongoose from 'mongoose'
+
+import {user} from '../models/UserModel.js'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 export const signUp=async(req,res)=>{
