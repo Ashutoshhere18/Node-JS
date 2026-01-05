@@ -1,4 +1,4 @@
-import comgoose from 'mongoose'
+import mongoose from 'mongoose'
 
 export const connectDB=async()=>{
   try{
@@ -7,4 +7,4 @@ export const connectDB=async()=>{
   }catch(err){
 console.log("MongoDB Not connected !.",err);
   }
-} ;
+} 
