@@ -28,9 +28,10 @@ if(!data){
    return res.json({message:"OTP mismatched !"});
 }
   if(data.expiry<new Date(Date.now())){
-    res.json({message:"OTP expired!"});
+    return res.json({message:"OTP expired!"});
   }
 
     res.json({message:"OTP Verified! !"});
+   await OtpModel.deleteMany({email});
 
 }
