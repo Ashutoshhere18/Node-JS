@@ -49,6 +49,8 @@ export const signOut=async(req,res)=>{
 }
 
 export const Blog=async(req,res)=>{
- const user=await authModel.findOne();
-    res.json({message:"Blog Page",user});
+ 
+    
+
+    
 }
