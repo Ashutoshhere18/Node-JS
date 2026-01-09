@@ -4,9 +4,9 @@ import bcrypt from 'bcrypt'
 
 export const signUp=async(req,res)=>{
 try{
-        const{email}=req.body.email;
+    const{email}=req.body;
     const hashedPassword=await bcrypt.hash(req.body.password,10);
-   await authModel.create({email,password:hashedPassword});
+   await authModel.create({email:email,password:hashedPassword});
    res.json({message:"User Sign Up successfully!"});
 }catch(err){
    res.json({message:"SignUp not done!",err:err});
@@ -18,7 +18,7 @@ try{
 export const signIn=async(req,res)=>{
     try{
         const{email,password}=req.body;
-          const user= authModel.findOne({email})
+          const user= await authModel.findOne({email})
           if(!user){
             return res.json({message:"User Not Found!"});
           }
@@ -28,8 +28,8 @@ export const signIn=async(req,res)=>{
         }
 
         res.cookie("Authentication",true,{
-            httpOnly:true,
             maxAge:1000*60*60,
+            httpOnly:true,
             secure:false,
             sameSite:"strict"
         })
@@ -49,6 +49,6 @@ export const signOut=async(req,res)=>{
 }
 
 export const Blog=async(req,res)=>{
- const user=await authModel.find();
+ const user=await authModel.findOne();
     res.json({message:"Blog Page",user});
 }

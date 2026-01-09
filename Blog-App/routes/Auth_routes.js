@@ -5,8 +5,8 @@ import {signUp,signIn,signOut,Blog} from '../controllers/Auth_controller.js'
 const router=express.Router();
 
 router.post("/signup",isUserExists,signUp);
-router.post("signin",signIn);
-router.get("signout",signOut);
+router.post("/signin",signIn);
+router.get("/signout",signOut);
 
 router.get("/blog",isUserAuthenticated,Blog);
 

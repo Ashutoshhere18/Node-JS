@@ -1,5 +1,5 @@
 import userModel from '../Model/User.model.js'
- const isAuthenticated=(req,res,next)=>{
+ export const isAuthenticated=(req,res,next)=>{
   if(req.cookies.auth){
     next();
   }
