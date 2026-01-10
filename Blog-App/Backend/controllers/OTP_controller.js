@@ -14,7 +14,7 @@ export const verifyOtp = async (req, res) => {
         maxAge: 1000 * 60 * 60,
         httpOnly: true,
         secure: false,
-        sameSite: "strict"
+        sameSite: "lax"
     })
     res.json({ message: "OTP verified and Sign In successfully!" });
 }
