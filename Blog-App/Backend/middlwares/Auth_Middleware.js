@@ -1,5 +1,5 @@
 import {authModel} from '../models/Auth_Models.js'
-import {otpModel} from '../models/Otp_Model.js'
+
 export const isUserExists=async(req,res,next)=>{
     const{email}=req.body;
     const user=await authModel.findOne({email});
@@ -19,7 +19,7 @@ export const isUserAuthenticated=async(req,res,next)=>{
 }
 
 export const userNotSignedIn=async(req,res,next)=>{
-    if(req.cookies && req.cookies.auth){
+    if(req.cookies && req.cookies.Authentication){
         next();
     }
     else{
