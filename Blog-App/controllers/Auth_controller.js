@@ -1,6 +1,7 @@
 import {authModel} from '../models/Auth_Models.js'
 import bcrypt from 'bcrypt'
-
+import {sendMail} from '../services/Otp_services.js'
+import {verifyOtp} from '../controllers/OTP_controller.js'
 
 export const signUp=async(req,res)=>{
 try{
@@ -26,17 +27,14 @@ export const signIn=async(req,res)=>{
         if(!isMatch){
             return res.json({message:"Password Invalid!"});
         }
-
-        res.cookie("Authentication",true,{
-            maxAge:1000*60*60,
-            httpOnly:true,
-            secure:false,
-            sameSite:"strict"
-        })
-         res.json({message:"SignIn Successfully!"});
+         await sendMail(email);
+         res.json({message:"OTP sent to your email!",email});
+       
+        
     }catch(err){
         res.json({message:"SignIn Failed!"});
     }
+
 }
 
 export const signOut=async(req,res)=>{
@@ -49,8 +47,6 @@ export const signOut=async(req,res)=>{
 }
 
 export const Blog=async(req,res)=>{
- 
-    
-
+ res.json({message:"Blog-Page accessed!"});
     
 }
