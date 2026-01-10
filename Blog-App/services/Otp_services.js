@@ -14,12 +14,12 @@ const transporter=nodemailer.createTransport({
 
 export const sendMail=async(email)=>{
    
-    const otp= Math.floor(100000+Math.round()*90000);
+    const otp= Math.floor(100000+Math.random()*90000);
     const expiry=new Date(Date.now()+2*1000*60);
 
     await otpModel.deleteMany({email});
 
-    await otpModel.create({email,otp,expiry});
+     otpModel.create({email,otp,expiry});
 
     transporter.sendMail({
         from:`OTP Services <${process.env.EMAIL}>`,
