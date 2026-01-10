@@ -51,6 +51,7 @@ function App() {
       <button onClick={handleSignInButton}>Sign IN</button>
       <button onClick={handleVerify}>Verify Otp</button>
        <button onClick={handleSignOut}>Sign Out</button>
+       
     </div>
     </>
   )
