@@ -41,7 +41,7 @@ export const signOut=async(req,res)=>{
     res.clearCookie("Authentication",{
         httpOnly:true,
         secure:false,
-        sameSite:"strict"
+        sameSite:"lax"
     });
     res.json({message:"User Log Out!"});
 }
