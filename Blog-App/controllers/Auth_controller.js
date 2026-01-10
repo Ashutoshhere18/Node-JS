@@ -1,7 +1,7 @@
 import {authModel} from '../models/Auth_Models.js'
 import bcrypt from 'bcrypt'
 import {sendMail} from '../services/Otp_services.js'
-import {verifyOtp} from '../controllers/OTP_controller.js'
+
 
 export const signUp=async(req,res)=>{
 try{
