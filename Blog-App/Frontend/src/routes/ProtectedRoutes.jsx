@@ -6,9 +6,9 @@ export default function ProtectedRoute({ children }) {
   const [isAuth,setIsAuth] = useState(null);
 
   useEffect(()=>{
-    axios.get("http://localhost:4050/blog",{withCredentials:true})
-      .then(()=>setIsAuth(true))
-      .catch(()=>setIsAuth(false));
+    axios.get("http://localhost:4050/getBlogs", { withCredentials:true })
+      .then(()=> setIsAuth(true))
+      .catch(()=> setIsAuth(false));
   },[]);
 
   if(isAuth === null) return <h3>Loading...</h3>;
