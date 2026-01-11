@@ -22,21 +22,33 @@ Built with the **MERN stack**, this project demonstrates real-world authenticati
 
 ## 🎥 Project Demo
 
-### ▶ Backend API Demo (Postman / Thunder Client)
+### ▶ Backend API Demo (Postman)
 
 *(Signup, Signin, OTP verify, Create blog, Upload image, Update, Delete, Cookies)*
-🔗 **[Add your backend demo video link here]**
+🔗 **[ 
+
+https://github.com/user-attachments/assets/75b42780-b014-44b6-8469-c105aeaef090
+
+]**
 
 ### ▶ Frontend Demo (React App)
 
 *(Complete flow: Signup → Signin → OTP → Blog system)*
-🔗 **[Add your frontend demo video link here]**
+🔗 **[ 
+
+https://github.com/user-attachments/assets/ef68b3a6-7467-4e50-bf05-c53acac5eb78
+
+ ]**
 
 ---
 
 ## 🖼 Screenshots
 
-> 
+> <img width="1355" height="630" alt="Screenshot 2026-01-11 230308" src="https://github.com/user-attachments/assets/c54cee2c-83f5-48eb-bbc9-6b4a7e3e9b96" />
+
+> <img width="1335" height="630" alt="Screenshot 2026-01-11 230446" src="https://github.com/user-attachments/assets/8081ffd8-f48f-4a84-a261-1031c9aeee99" />
+
+> <img width="1332" height="635" alt="Screenshot 2026-01-11 230504" src="https://github.com/user-attachments/assets/1f0bd9b1-ac2c-4136-abc8-98272ee49711" />
 
 * 🔐 Signup / Signin Page
 * 🔢 OTP Verification Page
