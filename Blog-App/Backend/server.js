@@ -15,7 +15,9 @@ app.use(cors({
 connectDB();
 dotenv.config();
 const PORT=process.env.PORT;
+
 app.use("/",router);
+app.use("/uploads", express.static("uploads"));
 
 app.listen(PORT,()=>{
     console.log("Server Started Successfully!..");
