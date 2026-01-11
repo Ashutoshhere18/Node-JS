@@ -1,6 +1,8 @@
+
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "../app.css";
 
 export default function Signin() {
   const [email,setEmail] = useState("");
@@ -22,11 +24,30 @@ export default function Signin() {
   };
 
   return (
-    <>
-      <h2>Signin</h2>
-      <input placeholder="email" onChange={e=>setEmail(e.target.value)} />
-      <input placeholder="password" type="password" onChange={e=>setPassword(e.target.value)} />
-      <button onClick={handleSignin}>Signin</button>
-    </>
+    <div className="auth-wrapper">
+      <div className="auth-card">
+
+        <div className="brand">Dev<span>Sphere</span></div>
+        <div className="subtitle">Sign in to your account</div>
+
+        <input 
+          placeholder="Enter your email"
+          onChange={e=>setEmail(e.target.value)} 
+        />
+
+        <input 
+          type="password"
+          placeholder="Enter your password"
+          onChange={e=>setPassword(e.target.value)} 
+        />
+
+        <button onClick={handleSignin}>Sign In</button>
+
+        <div className="footer-text">
+          Don’t have an account? <span onClick={()=>navigate("/")}>Sign Up</span>
+        </div>
+
+      </div>
+    </div>
   );
 }
