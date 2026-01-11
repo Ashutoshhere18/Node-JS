@@ -1,16 +1,131 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# 🚀 DevSphere Blog — SaaS Style Blogging Platform
 
-Currently, two official plugins are available:
+A modern full-stack blogging platform with **secure OTP authentication**, **image uploads**, and **complete blog management system**.
+Built with the **MERN stack**, this project demonstrates real-world authentication flow, protected routes, and media handling.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## ✨ Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* 🔐 Secure Signup & Signin (Bcrypt password hashing)
+* 📩 Email OTP verification system
+* 🍪 Cookie-based authentication
+* 🛡 Protected backend & frontend routes
+* 📝 Create, Read, Update, Delete (CRUD) blogs
+* 🖼 Image upload with Multer
+* 👤 Author-linked blog system
+* 🚪 Secure logout
+* ⚡ RESTful API design
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🎥 Project Demo
+
+### ▶ Backend API Demo (Postman / Thunder Client)
+
+*(Signup, Signin, OTP verify, Create blog, Upload image, Update, Delete, Cookies)*
+🔗 **[Add your backend demo video link here]**
+
+### ▶ Frontend Demo (React App)
+
+*(Complete flow: Signup → Signin → OTP → Blog system)*
+🔗 **[Add your frontend demo video link here]**
+
+---
+
+## 🖼 Screenshots
+
+> 
+
+* 🔐 Signup / Signin Page
+* 🔢 OTP Verification Page
+* 📝 Blog Create & List Page
+* 🖼 Image Upload Preview
+
+```
+
+---
+
+## 🛠 Tech Stack
+
+### Frontend
+
+* React
+* React Router DOM
+* Axios
+* CSS (SaaS style UI)
+
+### Backend
+
+* Node.js
+* Express.js
+* MongoDB + Mongoose
+
+### Authentication & Tools
+
+* Bcrypt (password hashing)
+* OTP mail system
+* Cookie-parser
+* Multer (file upload)
+* Postman / Thunder Client
+
+---
+
+## 📁 Project Structure
+
+```
+DevSphere-Blog
+│
+├── backend
+│   ├── controllers
+│   ├── models
+│   ├── routes
+│   ├── middlewares
+│   ├── config (multer, db)
+│   └── uploads
+│
+├── frontend
+│   ├── components
+│   ├── routes
+│   └── pages
+```
+
+---
+
+## 🔒 Authentication Flow
+
+1. User signs up
+2. User signs in with password
+3. OTP sent to email
+4. OTP verification
+5. Cookie is created with user ID
+6. User can access protected blog routes
+
+---
+
+## 🚀 Future Enhancements
+
+* JWT authentication & refresh tokens
+* Cloudinary image storage
+* Like & comment system
+* Rich text editor
+* User profiles
+* Role-based access (Admin/User)
+* Deployment on Render / Vercel
+
+---
+
+## 👨‍💻 Developer
+
+**Ashutosh Mishra**
+BCA Student | Full-Stack Developer
+📍 Gujarat, India
+
+---
+
+## ⭐ If you like this project
+
+Give it a ⭐ on GitHub — it motivates me to build more real-world projects!
+
+---
