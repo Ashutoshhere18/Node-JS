@@ -8,8 +8,8 @@ import dotenv from 'dotenv'
 dotenv.config();
 
 export const signup=async(req,res)=>{
+    const{ email,password }=req.body;
     try{
-     const{email,password}=req.body;
      const hashed=await bcrypt.hash(password,12);
      await authCollection.create({email,password:hashed});
      res.json({status:true,message:"User registered !!"});
@@ -22,7 +22,8 @@ export const signin=async(req,res)=>{
     const{email,password}=req.body;
     
     // step 1: To check user exist in database or not 
-    const user=await authCollection.findOne({email});
+   try{
+ const user=await authCollection.findOne({email});
     if(!user){
        return res.json({status:false,message:"User Not Found!"});
     }
@@ -37,9 +38,11 @@ export const signin=async(req,res)=>{
     const status=await sendOTP(email);
     if(status){
          res.json({status:true,message:"OTP Sent successfully!"});
-    }else{
-         res.json({status:false,message:"OTP Can't Sent !"});
     }
+   }catch(err){
+    res.json({status:false,message:"OTP Can't Sent !"});
+   }
+
 };
 
 export const verifyOTP=async(req,res)=>{
@@ -58,12 +61,10 @@ if(record.expiry<new Date(Date.now())){
  return res.json({status:false,message:"OTP Expired!"});
 }
 
-await otpCollection.deleteMany({email});
-
 try{
   // For generating jwt and store it in cookie for current logged i n user
   const user=await authCollection.findOne({email});
-  const token= jwt.sign(user,process.env.SECRET_KEY,{
+  const token= jwt.sign({...user},process.env.SECRET_KEY,{
     expiresIn:"1h"
   });
 
@@ -73,6 +74,7 @@ try{
   });
 
   res.json({status:true,message:"OTP Verified and Sign in done!"});
+  await otpCollection.deleteMany({email});
 }catch(err){
     res.json({status:false,message:"OTP Verification failed!",err});
 }
