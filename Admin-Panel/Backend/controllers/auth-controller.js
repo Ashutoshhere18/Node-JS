@@ -102,3 +102,66 @@ export const checkLoginStatus=async(req,res)=>{
     return res.json({status:false,message:"Sign in first!",err});
     }
 }   
+
+export const changePassword=async(req,res)=>{
+    const {email,oldPassword,newPassword}=req.body;
+
+   try{
+ const user=await authCollection.findOne({email});
+    const isMatch=await bcrypt.compare(oldPassword,user.password);
+    if(!isMatch){
+        return res.json({status:false,message:"OldPassword is incorrect!"});
+    }
+    const hashed=await bcrypt.hash(newPassword,12);
+
+    await authCollection.updateOne({email},{
+        $set: {
+            password:hashed
+        }
+    });
+
+    res.json({status:true,message:"Password Changed Successfully!"});
+   }catch(err){
+   return res.json({status:false,message:err.message});
+   }
+}
+
+
+export const forgotPassword=async(req,res)=>{
+    const{email}=req.body;
+
+  try{
+      
+const status =await sendOTP(email);
+     if(status){
+         res.json({status:true,message:"OTP Sent successfully!"});
+    }
+   }
+   catch(err){
+    res.json({status:false,message:err.message});
+   }
+}
+
+export const changeForgotPassword=async(req,res)=>{
+    const {email,otp,newPassword}=req.body;
+ try{
+      const record=await otpCollection.findOne({email,otp});
+   if(!record){
+    return res.json({status:false,message:err.message});
+   }
+   if(record.expiry<new Date(Date.now())){
+    return res.json({status:false,message:"Otp Expired"});
+   }
+    const hashed=await bcrypt.hash(newPassword,12);
+
+    await authCollection.updateOne({email},{
+        $set: {
+            password:hashed
+        }
+    });
+
+    res.json({status:true,message:"Password forgotted and Changed !"});
+ }catch(err){
+    res.json({status:false,message:err.message}); 
+ }
+}
