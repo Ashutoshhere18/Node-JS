@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import OtpInput from "react-otp-input";
 import {useLocation,useNavigate} from 'react-router'
-import { base_uri } from '../utils/global-function';
+import { base_uri } from '../../utils/global-function';
 import axios from 'axios'
 
 export default function VerifyOtp() {

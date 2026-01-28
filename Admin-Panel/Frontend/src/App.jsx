@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import {Routes,Route} from 'react-router'
 // import './App.css'
-import Signin from './Signin'
-import Signup from './Signup'
-import ForgotPassword from './ForgotPassword'
-import ChangeForgotPassword from './ChangeForgotPassword'
-import VerifyOtp from './Verifyotp'
-import ProfilePage from './ProfilePage'
+import Signin from './components/Signin'
+import Signup from './components/Signup'
+import ForgotPassword from './components/ForgotPassword'
+import ChangeForgotPassword from './components/ChangeForgotPassword'
+import VerifyOtp from './components/Verifyotp'
+import ProfilePage from './components/ProfilePage'
 
 function App() {
  
