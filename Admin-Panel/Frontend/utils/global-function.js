@@ -1,0 +1,1 @@
+export const base_uri = "http://localhost:4040/api";
