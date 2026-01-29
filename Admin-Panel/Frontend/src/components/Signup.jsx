@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react'
 import axios from 'axios'
-import { base_uri } from '../utils/global-function'
+import { base_uri } from '../../utils/global-function'
 import {Link} from 'react-router'
 
 

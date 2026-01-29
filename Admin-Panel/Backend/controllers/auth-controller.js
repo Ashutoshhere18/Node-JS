@@ -4,6 +4,7 @@ import bcrypt from 'bcrypt'
 import {sendOTP} from '../services/otp-services.js'
 import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
+import { userCollection } from '../models/user-model.js'
 
 dotenv.config();
 
@@ -11,6 +12,7 @@ export const signup=async(req,res)=>{
     const{ email,password }=req.body;
     try{
      const hashed=await bcrypt.hash(password,12);
+     await userCollection.create({email});
      await authCollection.create({email,password:hashed});
      res.json({status:true,message:"User registered !!"});
     }catch(err){

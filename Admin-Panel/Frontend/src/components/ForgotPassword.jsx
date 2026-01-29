@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router'
-import { base_uri } from '../utils/global-function';
+import { base_uri } from '../../utils/global-function';
 
 export default function ForgotPassword() {
 

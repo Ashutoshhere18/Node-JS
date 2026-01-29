@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import OtpInput from "react-otp-input";
 import axios from 'axios'
-import { base_uri } from '../utils/global-function';
+import { base_uri } from '../../utils/global-function';
 import {useNavigate} from 'react-router'
 
 export default function ChangeForgotPassword() {
