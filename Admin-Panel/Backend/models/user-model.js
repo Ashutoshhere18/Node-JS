@@ -8,7 +8,18 @@ const userSchema=new mongoose.Schema({
     education:String,
     age:String,
     exp:String,
-    image:String
+    image:String,
+    skills: [
+    {
+      skillName: String,          // React, JS, Node
+      level: String,              // Beginner / Intermediate / Advanced
+      progress: Number,           // 0 - 100
+      lastUpdated: {
+        type: Date,
+        default: Date.now
+      }
+    }
+  ]
 })
 
 export const userCollection=mongoose.model("users",userSchema);

@@ -16,7 +16,7 @@ export default function VerifyOtp() {
       const res = await axios.post(`${base_uri}/auth/verifyOtp`, {email:state, otp:Number(otp)},{withCredentials:true} );
       alert(res.data.message);
       if (res.data.status) {
-        Navigate("/ProfilePage");
+        Navigate("/HomePage");
       }
     }catch(err) {
       alert(err.message);

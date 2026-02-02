@@ -6,7 +6,9 @@ import Signup from './components/Signup'
 import ForgotPassword from './components/ForgotPassword'
 import ChangeForgotPassword from './components/ChangeForgotPassword'
 import VerifyOtp from './components/Verifyotp'
-import ProfilePage from './components/ProfilePage'
+import ProfilePage from './pages/ProfilePage'
+import HomePage from './pages/HomePage'
+import AboutPage from './pages/AboutPage'
 
 function App() {
  
@@ -20,6 +22,8 @@ function App() {
         <Route path='/forgotPassword' element={<ForgotPassword/>}/>
         <Route path='/ChangeForgotPassword' element={<ChangeForgotPassword/>}/>
         <Route path='/ProfilePage' element={<ProfilePage/>}/>
+        <Route path='/HomePage' element={<HomePage/>}/>
+        <Route path='/AboutPage' element={<AboutPage/>}/>
       </Routes>
     </>
   )
