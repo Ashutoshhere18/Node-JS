@@ -1,3 +1,5 @@
+
+
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { base_uri } from "../../utils/global-function.js";
@@ -16,10 +18,22 @@ export default function Profile() {
         `${base_uri}/admin/get-current-user`,
         { withCredentials: true }
       );
-
       if (res.data.status) {
         setCurrentUser(res.data.user);
-      } else {
+      }
+    } catch (err) {
+      alert(err.message);
+    }
+  };
+
+  const handleUpdateProfile = async () => {
+    try {
+      const res = await axios.put(
+        `${base_uri}/admin/update-user`,
+        currentUser,
+        { withCredentials: true }
+      );
+      if (res.data.status) {
         alert(res.data.message);
       }
     } catch (err) {
@@ -30,62 +44,51 @@ export default function Profile() {
   return (
     <div className="container-fluid bg-light min-vh-100 p-5">
 
-      {/* ===== Header ===== */}
-      <div className="mb-4">
-        <h2 className="fw-bold">Profile</h2>
-        <p className="text-muted">
-          Manage your personal information & skills
-        </p>
-      </div>
+      <h3 className="fw-bold mb-3">My Profile</h3>
 
       <div className="row g-4">
 
-        {/* ===== Left Profile Card ===== */}
+        {/* ===== Left Card ===== */}
         <div className="col-md-4">
           <div className="card border-0 shadow-sm rounded-4 p-4 text-center">
-
             <img
               src={currentUser.image || "https://i.pravatar.cc/150"}
-              alt="profile"
               className="rounded-circle mb-3"
               width="120"
               height="120"
+              alt="profile"
             />
 
-            <h5 className="fw-bold mb-0">
-              {currentUser.name || "Not Assigned"}
-            </h5>
+            <h5>{currentUser.name || "Your Name"}</h5>
+            <p className="text-muted">{currentUser.role || "User"}</p>
 
-            <p className="text-muted mb-2">
-              {currentUser.education || "Learner"}
-            </p>
-
-            <span className="badge bg-success mb-3">
-              Active User
-            </span>
-
-            <button className="btn btn-outline-primary w-100">
-              Edit Profile
+            <button
+              className="btn btn-primary w-100"
+              onClick={handleUpdateProfile}
+            >
+              Update Profile
             </button>
           </div>
         </div>
 
-        {/* ===== Right Details ===== */}
+        {/* ===== Right Section ===== */}
         <div className="col-md-8">
-
-          {/* ===== Personal Info ===== */}
-          <div className="card border-0 shadow-sm rounded-4 p-4 mb-4">
-            <h5 className="fw-semibold mb-3">Personal Information</h5>
+          <div className="card border-0 shadow-sm rounded-4 p-4">
 
             <div className="row g-3">
 
               <div className="col-md-6">
-                <label className="form-label">Full Name</label>
+                <label className="form-label">Name</label>
                 <input
                   type="text"
                   className="form-control"
                   value={currentUser.name || ""}
-                  readOnly
+                  onChange={(e) =>
+                    setCurrentUser({
+                      ...currentUser,
+                      name: e.target.value
+                    })
+                  }
                 />
               </div>
 
@@ -104,8 +107,13 @@ export default function Profile() {
                 <input
                   type="text"
                   className="form-control"
-                  value={currentUser.phone || "Not Added"}
-                  readOnly
+                  value={currentUser.phone || ""}
+                  onChange={(e) =>
+                    setCurrentUser({
+                      ...currentUser,
+                      phone: e.target.value
+                    })
+                  }
                 />
               </div>
 
@@ -114,8 +122,43 @@ export default function Profile() {
                 <input
                   type="text"
                   className="form-control"
-                  value={currentUser.age || "Not Added"}
-                  readOnly
+                  value={currentUser.age || ""}
+                  onChange={(e) =>
+                    setCurrentUser({
+                      ...currentUser,
+                      age: e.target.value
+                    })
+                  }
+                />
+              </div>
+
+              <div className="col-md-6">
+                <label className="form-label">Education</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={currentUser.education || ""}
+                  onChange={(e) =>
+                    setCurrentUser({
+                      ...currentUser,
+                      education: e.target.value
+                    })
+                  }
+                />
+              </div>
+
+              <div className="col-md-6">
+                <label className="form-label">Experience</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={currentUser.exp || ""}
+                  onChange={(e) =>
+                    setCurrentUser({
+                      ...currentUser,
+                      exp: e.target.value
+                    })
+                  }
                 />
               </div>
 
@@ -124,50 +167,20 @@ export default function Profile() {
                 <input
                   type="text"
                   className="form-control"
-                  value={currentUser.address || "Not Added"}
-                  readOnly
+                  value={currentUser.address || ""}
+                  onChange={(e) =>
+                    setCurrentUser({
+                      ...currentUser,
+                      address: e.target.value
+                    })
+                  }
                 />
               </div>
 
             </div>
           </div>
-
-          {/* ===== Skills Section (Static for now) ===== */}
-          <div className="card border-0 shadow-sm rounded-4 p-4">
-            <h5 className="fw-semibold mb-3">Skills Progress</h5>
-
-            <p className="mb-1">React</p>
-            <div className="progress mb-3">
-              <div
-                className="progress-bar bg-primary"
-                style={{ width: "75%" }}
-              >
-                75%
-              </div>
-            </div>
-
-            <p className="mb-1">JavaScript</p>
-            <div className="progress mb-3">
-              <div
-                className="progress-bar bg-success"
-                style={{ width: "85%" }}
-              >
-                85%
-              </div>
-            </div>
-
-            <p className="mb-1">CSS</p>
-            <div className="progress">
-              <div
-                className="progress-bar bg-warning"
-                style={{ width: "70%" }}
-              >
-                70%
-              </div>
-            </div>
-          </div>
-
         </div>
+
       </div>
     </div>
   );

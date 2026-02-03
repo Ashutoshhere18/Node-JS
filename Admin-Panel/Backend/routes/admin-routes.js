@@ -3,7 +3,7 @@ import { getAllUsers, getCurrentUser, updateUser } from '../controllers/admin-co
 
 const router=express.Router();
 
-router.post('/update-user',updateUser);
+router.put('/update-user',updateUser);
 router.get('/get-users',getAllUsers);
 router.get('/get-current-user',getCurrentUser);
 

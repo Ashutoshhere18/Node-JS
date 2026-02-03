@@ -8,6 +8,7 @@ const userSchema=new mongoose.Schema({
     education:String,
     age:String,
     exp:String,
+    role:String,
     image:String,
     skills: [
     {
