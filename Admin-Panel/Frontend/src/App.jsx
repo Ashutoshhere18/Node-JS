@@ -9,6 +9,7 @@ import VerifyOtp from './components/Verifyotp'
 import ProfilePage from './pages/ProfilePage'
 import HomePage from './pages/HomePage'
 import AboutPage from './pages/AboutPage'
+import ProtectedRoute from './components/ProtectedRoute'
 
 function App() {
  
@@ -18,12 +19,14 @@ function App() {
       <Routes>
         <Route path='/' element={<Signin/>}/>
         <Route path='/signup' element={<Signup/>}/>
+
+        //Protected Routes
         <Route path='/verify-otp' element={<VerifyOtp/>}/>
-        <Route path='/forgotPassword' element={<ForgotPassword/>}/>
-        <Route path='/ChangeForgotPassword' element={<ChangeForgotPassword/>}/>
-        <Route path='/ProfilePage' element={<ProfilePage/>}/>
-        <Route path='/HomePage' element={<HomePage/>}/>
-        <Route path='/AboutPage' element={<AboutPage/>}/>
+        <Route path='/forgotPassword' element={<ProtectedRoute><ForgotPassword/></ProtectedRoute>}/>
+        <Route path='/ChangeForgotPassword' element={<ProtectedRoute><ChangeForgotPassword/></ProtectedRoute>}/>
+        <Route path='/ProfilePage' element={<ProtectedRoute><ProfilePage/></ProtectedRoute>}/>
+        <Route path='/HomePage' element={<ProtectedRoute><HomePage/></ProtectedRoute>}/>
+        <Route path='/AboutPage' element={<ProtectedRoute><AboutPage/></ProtectedRoute>}/>
       </Routes>
     </>
   )
