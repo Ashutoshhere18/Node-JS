@@ -87,23 +87,23 @@ export const signout=async(req,res)=>{
     res.json({status:true,message:"User Signout Successfully!"})
 }
 
-export const checkLoginStatus=async(req,res)=>{
-    try{
-    // Step 1: Finding Token
-    const token=req.cookies.auth_token;
+// export const checkLoginStatus=async(req,res)=>{
+//     try{
+//     // Step 1: Finding Token
+//     const token=req.cookies.auth_token;
 
-    //Step 2: If token not found
-    if(!token){
-        return res.json({status:false,message:"Sign In first!"});
+//     //Step 2: If token not found
+//     if(!token){
+//         return res.json({status:false,message:"Sign In first!"});
 
-    // Step 3: Verify jwt token
-    const decoded= jwt.verify(token,process.env.SECRET_KEY,{expiresIn:"1h"})
-    return res.json({status:true,message:"User Already Logged in!",user:decoded.payload});
-    }
-    }catch(err){
-    return res.json({status:false,message:"Sign in first!",err});
-    }
-}   
+//     // Step 3: Verify jwt token
+//     const decoded= jwt.verify(token,process.env.SECRET_KEY,{expiresIn:"1h"})
+//     return res.json({status:true,message:"User Already Logged in!",user:decoded.payload});
+//     }
+//     }catch(err){
+//     return res.json({status:false,message:"Sign in first!",err});
+//     }
+// }   
 
 export const changePassword=async(req,res)=>{
     const {email,oldPassword,newPassword}=req.body;
