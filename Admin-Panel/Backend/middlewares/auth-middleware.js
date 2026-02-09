@@ -19,7 +19,7 @@ export const checkLoginStatus = (req, res, next) => {
     const decoded = jwt.verify(token, process.env.SECRET_KEY);
 
     // 4. User data request me daal do
-    req.user = decoded.payload;
+    req.user = decoded;
 
     // 5. Sab sahi → next API chale
     next();
