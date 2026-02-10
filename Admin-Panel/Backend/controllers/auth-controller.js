@@ -66,9 +66,12 @@ if(record.expiry<new Date(Date.now())){
 try{
   // For generating jwt and store it in cookie for current logged i n user
   const user=await userCollection.findOne({email});
-  const token= jwt.sign({...user},process.env.SECRET_KEY,{
-    expiresIn:"1h"
-  });
+const token = jwt.sign(
+  { email: user.email },
+  process.env.SECRET_KEY,
+  { expiresIn: "1h" }
+);
+
 
   res.cookie("auth_token",token,{
     maxAge:1000*60*60,
