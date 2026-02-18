@@ -1,26 +1,15 @@
 import mongoose from 'mongoose'
 
-const userSchema=new mongoose.Schema({
-    email:{type:String,required:true,unique:true},
+const userSchema=mongoose.Schema({
+    email:{type:String,unique:true,required:true},
     name:String,
     phone:String,
     address:String,
-    education:String,
-    age:String,
-    exp:String,
-    role:String,
+    age:Number,
+    monthlyBudget:Number,
+    saving:Number,
     image:String,
-    skills: [
-    {
-      skillName: String,          // React, JS, Node
-      level: String,              // Beginner / Intermediate / Advanced
-      progress: Number,           // 0 - 100
-      lastUpdated: {
-        type: Date,
-        default: Date.now
-      }
-    }
-  ]
-})
+    role:String
+});
 
 export const userCollection=mongoose.model("users",userSchema);

@@ -12,7 +12,7 @@ const transport= nodemailer.createTransport({
     }
 });
 
-export const sendOTP=async(email)=>{
+export const sendOtp=async(email)=>{
 const otp= Math.floor(100000+Math.random()*900000);
 
 const expiry=new Date(Date.now()+1000*60*2);
