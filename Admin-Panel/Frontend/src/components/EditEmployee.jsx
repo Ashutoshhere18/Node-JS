@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { base_uri } from '../../utils/global-function.js';
 import { useNavigate, useLocation } from 'react-router'
 
@@ -8,10 +8,28 @@ export default function EditEmployee() {
   const navigate = useNavigate();
   const employeeData = location.state;
 
+  useEffect(() => {
+    handleGetDepartments();
+  }, []);
   const [email, setEmail] = useState(employeeData?.email || "");
   const [name, setName] = useState(employeeData?.user?.name || "");
   const [role, setRole] = useState(employeeData?.user?.role || "");
   const [loading, setLoading] = useState(false);
+  const [departments, setDepartments] = useState([]);
+  const [department, setDepartment] = useState(employeeData?.department || "");
+
+  const handleGetDepartments=async()=>{
+    try{
+     const res=await axios.get(`${base_uri}/selection`);
+     if(res.data.status){
+    
+      const dep = res.data.department ?? res.data.departments ?? [];
+      setDepartments(Array.isArray(dep) ? dep : (dep ? [dep] : []));
+     }
+    }catch(err){
+      alert(err.message);
+    }
+  }
 
   const handleUpdateEmployee = async () => {
     if (!email || !name || !role) {
@@ -97,6 +115,29 @@ export default function EditEmployee() {
                 <option value="admin">Admin</option>
                 <option value="employee">Employee</option>
                 <option value="manager">Manager</option>
+              </select>
+            </div>
+          </div>
+        </div>
+                <div className='row'>
+          <div className="col-md-6">
+            <div className="mb-3">
+              <label htmlFor="department" className="form-label">Department</label>
+              <select
+                value={department}
+                onChange={(e) => setDepartment(e.target.value)}
+                className="form-control"
+                id="department"
+              >
+                <option value="">Select Department</option>
+                {Array.isArray(departments) && departments.map((dep) => (
+                  <option
+                    key={dep._id ?? dep.name}
+                    value={dep.name}
+                  >
+                    {dep.name}
+                  </option>
+                ))}
               </select>
             </div>
           </div>

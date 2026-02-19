@@ -9,6 +9,7 @@ export default function AddEmployee() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [users, setUsers] = useState([]);
+  const [department,setDepartment]=useState("");
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -21,6 +22,16 @@ export default function AddEmployee() {
       if (res.data.status) {
         alert("Employee added successfully!");
         getAllUsers();
+      }
+    } catch (err) {
+      alert(err.message);
+    }
+  }
+   const handleAddDepartment = async () => {
+    try {
+      const res = await axios.post(`${base_uri}/selection?name=${department}`);
+      if (res.data.status) {
+       alert(res.data.message);
       }
     } catch (err) {
       alert(err.message);
@@ -76,8 +87,15 @@ export default function AddEmployee() {
               <label htmlFor="password" className="form-label">Password</label>
               <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" className="form-control" id="password" placeholder="*******" />
             </div>
+            <div className="mb-3">
+              <label htmlFor="department-input" className="form-label">Department</label>
+              <input value={department} onChange={(e) => setDepartment(e.target.value)} type="text" className="form-control" id="department-input" placeholder="eg.HR,Accountant.." />
+            </div>
             <div className='d-flex justify-content-center align-items-center'>
               <button onClick={handleAddEmployee} className='btn btn-primary text-white mt-3 '>Add Employee</button>
+            </div>
+             <div className='d-flex justify-content-center align-items-center'>
+              <button onClick={handleAddDepartment} className='btn btn-primary text-white mt-3 '>Add Department</button>
             </div>
           </div>
         </div>
