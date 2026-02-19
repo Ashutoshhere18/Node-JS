@@ -17,7 +17,7 @@ export default function AddEmployee() {
 
   const handleAddEmployee = async () => {
     try {
-      const res = await axios.post(`${base_uri}/auth/signup`, { email, password })
+      const res = await axios.post(`${base_uri}/auth/signup`, { email, password }, { withCredentials: true })
       if (res.data.status) {
         alert("Employee added successfully!");
         getAllUsers();
@@ -28,7 +28,7 @@ export default function AddEmployee() {
   }
   const getAllUsers = async () => {
     try {
-      const res = await axios.get(`${base_uri}/admin/get-users?skip=${skip}&limit=5`);
+      const res = await axios.get(`${base_uri}/admin/get-users?skip=${skip}&limit=5`, { withCredentials: true });
       if (res.data.status) {
         setUsers(res.data.user)
       }
@@ -39,18 +39,21 @@ export default function AddEmployee() {
 
   const handleDelete = async (id) => {
     try {
-      const res = await axios.delete(`${base_uri}/admin/delete-user?id=${id}`);
+      const res = await axios.delete(`${base_uri}/admin/delete-user?id=${id}`, { withCredentials: true });
       if (res.data.status) {
         alert(res.data.message);
+        // Refresh the employee list
+        getAllUsers();
+      } else {
+        alert(res.data.message || "Failed to delete employee");
       }
-      getAllUsers();
     } catch (err) {
       alert(err.message);
     }
   }
  const handleFetchEmployeeByRole=async()=>{
     try{
-      const res=axios.get(`${base_uri}/admin/get-user-by-role?role=${search}`);
+      const res=axios.get(`${base_uri}/admin/get-user-by-role?role=${search}`, { withCredentials: true });
       if((await res).data.status){
         setUsers((await res).data.users);
       }
@@ -59,52 +62,7 @@ export default function AddEmployee() {
     }
   }
   return (
-//   <div className='container'>
-//         <div className='shadow-lg'>
-      
-//     <div className="mb-3">
-//     <label for="exampleInputEmail1" className="form-label">Email address</label>
-//     <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
-//     <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
-//   </div>
 
-//    <div className="mb-3">
-//     <label for="exampleInputEmail1" className="form-label">Password</label>
-//     <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
-//     <div id="emailHelp" className="form-text">We'll never share your password with anyone else.</div>
-//   </div>
-
-//  <button className='btn btn-primary'> Add Employee</button>
-//     </div>
-
-//     <div className='mt-5 shadow-lg'>
-//     <table class="table table-hover">
-//   <thead>
-//     <tr>
-//       <th scope="col">#</th>
-//       <th scope="col">Name</th>
-//       <th scope="col">Email</th>
-//       <th scope="col">Role</th>
-//       <th scope="col">Action</th>
-//     </tr>
-//   </thead>
-//   <tbody>
-//     <tr>
-//       <th scope="row">1</th>
-//       <td>Mark</td>
-//       <td>Otto@gmail.com</td>
-//       <td>Employee</td>
-//       <td>
-//         <button className='btn btn-warning'>Edit</button>
-//         <button className='btn btn-danger'>Delete</button>
-//       </td>
-//     </tr>
-    
-//   </tbody>
-// </table>
-//     </div>
-   
-//   </div>
 <div className='container-fluid'>
       <div className='container shadow mt-4 p-4 rounded'>
         <div className='col-6 '>
@@ -136,7 +94,7 @@ export default function AddEmployee() {
             <button onClick={()=>{if(skip>=5){setSkip(skip-5)}else{alert("limit reached")}}} className='btn btn-primary ms-2'>--</button>
             </div>
         </div>
-        <table class="table table-hover">
+        <table className="table table-hover">
           <thead>
             <tr>
               <th scope="col">#</th>
@@ -159,9 +117,9 @@ export default function AddEmployee() {
             users.map((user, i) =>
               <tr key={i}>
                 <th scope="row">{i + 1}</th>
-                <td>{user.user.name ? user.user.name : "Not assign"}</td>
+                <td>{user?.user?.name ? user.user.name : "Not assign"}</td>
                 <td>{user.email}</td>
-                <td>{user.user.role ? user.user.role : "Not assign"}</td>
+                <td>{user?.user?.role ? user.user.role : "Not assign"}</td>
                 <td>
                   <button onClick={() => {
                     navigate("/edit-emp", { state: user });

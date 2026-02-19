@@ -11,6 +11,7 @@ import HomePage from './pages/HomePage'
 import AboutPage from './pages/AboutPage'
 import ProtectedRoute from './components/ProtectedRoute'
 import AddEmployee from './components/AddEmployee'
+import EditEmployee from './components/EditEmployee'
 
 function App() {
  
@@ -29,6 +30,7 @@ function App() {
         <Route path='/HomePage' element={<ProtectedRoute><HomePage/></ProtectedRoute>}/>
         <Route path='/AboutPage' element={<ProtectedRoute><AboutPage/></ProtectedRoute>}/>
         <Route path='/Add-employee' element={<ProtectedRoute><AddEmployee/></ProtectedRoute>}/>
+        <Route path='/edit-emp' element={<ProtectedRoute><EditEmployee/></ProtectedRoute>}/>
       </Routes>
     </>
   )

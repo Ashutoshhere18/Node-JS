@@ -40,8 +40,8 @@ export const getAllUser = async (req, res) => {
     const user = await authCollection
       .find()
       .populate("user")
-      .skip(skip)
-      .limit(limit);
+      .skip(parseInt(skip))
+      .limit(parseInt(limit));
     return res.json({
       status: true,
       message: "all users fetched successfully!",
@@ -85,7 +85,24 @@ export const getCurrentUser = async (req, res) => {
 export const deleteUser = async (req, res) => {
   const id = req.query.id;
   try {
-    await userCollection.findByIdAndDelete(id);
+    // Find the auth record and get the user ID
+    const authRecord = await authCollection.findById(id);
+    
+    if (!authRecord) {
+      return res.json({
+        status: false,
+        message: "Employee not found"
+      });
+    }
+
+    // Delete the user record if it exists
+    if (authRecord.user) {
+      await userCollection.findByIdAndDelete(authRecord.user);
+    }
+
+    // Delete the auth record
+    await authCollection.findByIdAndDelete(id);
+
     return res.json({
       status: true,
       message: "Employee deleted successfully!!",

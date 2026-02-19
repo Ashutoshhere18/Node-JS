@@ -20,7 +20,7 @@ export default function Signup() {
     const user = { email, password }
 
     try {
-      const res = await axios.post(`${base_uri}/auth/signup`, user);
+      const res = await axios.post(`${base_uri}/auth/signup`, user, { withCredentials: true });
       alert(res.data.message );
     } catch (err) {
       alert(err.message);

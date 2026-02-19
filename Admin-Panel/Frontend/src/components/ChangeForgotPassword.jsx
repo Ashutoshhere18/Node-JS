@@ -20,7 +20,7 @@ export default function ChangeForgotPassword() {
     };
 
    try{
-    const res = await axios.post(`${base_uri}/auth/changeForgotPassword`,data);
+    const res = await axios.post(`${base_uri}/auth/changeForgotPassword`,data, { withCredentials: true });
        alert(res.data.message);
       if(res.data.status){
         Navigate("/");
