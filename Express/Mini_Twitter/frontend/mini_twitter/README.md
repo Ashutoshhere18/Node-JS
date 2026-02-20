@@ -23,6 +23,10 @@ This project helped me understand **frontend–backend integration**, API handli
 📌 Project Demo Video
 
 
+https://github.com/user-attachments/assets/b42a7de6-d227-49ed-92db-0e4a31d2ba38
+
+
+
 ## 🛠 Tech Stack
 
 ### Frontend

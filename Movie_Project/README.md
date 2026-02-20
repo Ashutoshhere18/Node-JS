@@ -42,6 +42,10 @@ This project demonstrates **real-world full-stack development skills**, includin
 > A clean, modern glassmorphism interface designed for clarity, focus, and professionalism.
 
 
+https://github.com/user-attachments/assets/922e6457-dfa5-4cb7-a8bf-4e22ad389f5c
+
+
+
 
 ---
 
