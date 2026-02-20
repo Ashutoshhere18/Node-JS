@@ -1,42 +1,60 @@
+
 import React from "react";
 import { Link } from "react-router";
+import "../App.css";
 
 export default function Dashboard() {
   return (
-    <div className="container-fluid">
-      <div className="row min-vh-100">
+    <div className="container-fluid p-0">
+      <div className="row g-0 min-vh-100">
 
         {/* ===== Sidebar ===== */}
-        <div className="col-md-3 col-lg-2 bg-dark text-white p-4">
-          <h4 className="fw-bold mb-4">SkillPanel</h4>
+        <div className="col-md-3 col-lg-2 bg-dark text-white p-4 d-flex flex-column">
+          <h4 className="fw-bold mb-4 text-center">
+            <span className="text-primary">Skill</span>Panel
+          </h4>
 
-          <ul className="nav flex-column gap-2">
+          <ul className="nav flex-column gap-2 flex-grow-1">
             <li className="nav-item">
-              <Link to="/Add-employee" className="nav-link text-white">
-                Employee
+              <Link to="/Add-employee" className="nav-link text-white sidebar-link">
+                👨‍💼 Employee
               </Link>
             </li>
+
             <li className="nav-item">
-              <Link to="/ProfilePage" className="nav-link text-white">
+              <Link to="/complaint-dashboard" className="nav-link text-white sidebar-link">
+                📊 Complaint Dashboard
+              </Link>
+            </li>
+
+            <li className="nav-item">
+              <Link to="/complaints" className="nav-link text-white sidebar-link">
+                📝 Complaints
+              </Link>
+            </li>
+
+            <li className="nav-item">
+              <Link to="/ProfilePage" className="nav-link text-white sidebar-link">
                 👤 Profile
               </Link>
             </li>
+
             <li className="nav-item">
-              <Link to="/skills" className="nav-link text-white">
+              <Link to="/skills" className="nav-link text-white sidebar-link">
                 🧠 Skills
               </Link>
             </li>
+
             <li className="nav-item">
-              <Link to="/AboutPage" className="nav-link text-white">
+              <Link to="/AboutPage" className="nav-link text-white sidebar-link">
                 ℹ️ About
               </Link>
             </li>
-            <li className="nav-item mt-3">
-              <Link to="/" className="nav-link text-danger">
-                🚪 Logout
-              </Link>
-            </li>
           </ul>
+
+          <Link to="/" className="nav-link text-danger mt-auto">
+            🚪 Logout
+          </Link>
         </div>
 
         {/* ===== Main Content ===== */}
@@ -46,9 +64,7 @@ export default function Dashboard() {
           <div className="d-flex justify-content-between align-items-center mb-4">
             <div>
               <h2 className="fw-bold">Dashboard</h2>
-              <p className="text-muted mb-0">
-                Skill Progress Overview
-              </p>
+              <p className="text-muted mb-0">Admin Overview</p>
             </div>
             <div className="fw-semibold">
               👋 Welcome, Admin
@@ -58,88 +74,50 @@ export default function Dashboard() {
           {/* ===== Stats Cards ===== */}
           <div className="row g-4 mb-4">
 
-            <div className="col-md-3">
-              <div className="card border-0 shadow-sm rounded-4 p-3">
-                <h6 className="text-muted">Total Users</h6>
-                <h3 className="fw-bold">120</h3>
+            {[
+              { title: "Total Users", value: 120 },
+              { title: "Total Complaints", value: 48 },
+              { title: "Open Complaints", value: 12 },
+              { title: "Resolved", value: 36 },
+            ].map((card, index) => (
+              <div className="col-md-3" key={index}>
+                <div className="card border-0 shadow-sm rounded-4 p-4 stat-card">
+                  <h6 className="text-muted">{card.title}</h6>
+                  <h3 className="fw-bold">{card.value}</h3>
+                </div>
               </div>
-            </div>
-
-            <div className="col-md-3">
-              <div className="card border-0 shadow-sm rounded-4 p-3">
-                <h6 className="text-muted">Total Skills</h6>
-                <h3 className="fw-bold">48</h3>
-              </div>
-            </div>
-
-            <div className="col-md-3">
-              <div className="card border-0 shadow-sm rounded-4 p-3">
-                <h6 className="text-muted">Avg Progress</h6>
-                <h3 className="fw-bold">72%</h3>
-              </div>
-            </div>
-
-            <div className="col-md-3">
-              <div className="card border-0 shadow-sm rounded-4 p-3">
-                <h6 className="text-muted">Active Learners</h6>
-                <h3 className="fw-bold">89</h3>
-              </div>
-            </div>
+            ))}
 
           </div>
 
-          {/* ===== Skill Progress Section ===== */}
-          <div className="row g-4">
+          {/* ===== Recent Complaints Section ===== */}
+          <div className="card border-0 shadow-sm rounded-4 p-4">
+            <h5 className="fw-semibold mb-3">Recent Complaints</h5>
 
-            <div className="col-md-6">
-              <div className="card border-0 shadow-sm rounded-4 p-4">
-                <h5 className="fw-semibold mb-3">Top Skills Progress</h5>
-
-                <p className="mb-1">React</p>
-                <div className="progress mb-3">
-                  <div className="progress-bar bg-success" style={{ width: "75%" }}>
-                    75%
-                  </div>
-                </div>
-
-                <p className="mb-1">JavaScript</p>
-                <div className="progress mb-3">
-                  <div className="progress-bar bg-primary" style={{ width: "85%" }}>
-                    85%
-                  </div>
-                </div>
-
-                <p className="mb-1">Node.js</p>
-                <div className="progress">
-                  <div className="progress-bar bg-warning" style={{ width: "60%" }}>
-                    60%
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* ===== Recent Activity ===== */}
-            <div className="col-md-6">
-              <div className="card border-0 shadow-sm rounded-4 p-4">
-                <h5 className="fw-semibold mb-3">Recent Activity</h5>
-
-                <ul className="list-group list-group-flush">
-                  <li className="list-group-item">
-                    ✔ React skill updated to 75%
-                  </li>
-                  <li className="list-group-item">
-                    ✔ JavaScript marked as Advanced
-                  </li>
-                  <li className="list-group-item">
-                    ✔ New user added
-                  </li>
-                  <li className="list-group-item">
-                    ✔ Node.js progress increased
-                  </li>
-                </ul>
-              </div>
-            </div>
-
+            <table className="table table-hover">
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Department</th>
+                  <th>Priority</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>WiFi Not Working</td>
+                  <td>IT</td>
+                  <td><span className="badge bg-danger">High</span></td>
+                  <td><span className="badge bg-warning text-dark">Open</span></td>
+                </tr>
+                <tr>
+                  <td>Library AC Issue</td>
+                  <td>Facility</td>
+                  <td><span className="badge bg-primary">Medium</span></td>
+                  <td><span className="badge bg-success">Resolved</span></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
         </div>

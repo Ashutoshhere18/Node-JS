@@ -72,83 +72,168 @@ export default function AddEmployee() {
       alert(err.message);
     }
   }
-  return (
 
-<div className='container-fluid'>
-      <div className='container shadow mt-4 p-4 rounded'>
-        <div className='col-6 '>
-          <h4 className='mb-3'>Add a new Employee</h4>
-          <div className='d-flex w-100 justify-content-between'>
-            <div className="mb-3">
-              <label htmlFor="email" className="form-label">Email address</label>
-              <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" className="form-control" id="email" placeholder="name@example.com" />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="password" className="form-label">Password</label>
-              <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" className="form-control" id="password" placeholder="*******" />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="department-input" className="form-label">Department</label>
-              <input value={department} onChange={(e) => setDepartment(e.target.value)} type="text" className="form-control" id="department-input" placeholder="eg.HR,Accountant.." />
-            </div>
-            <div className='d-flex justify-content-center align-items-center'>
-              <button onClick={handleAddEmployee} className='btn btn-primary text-white mt-3 '>Add Employee</button>
-            </div>
-             <div className='d-flex justify-content-center align-items-center'>
-              <button onClick={handleAddDepartment} className='btn btn-primary text-white mt-3 '>Add Department</button>
-            </div>
-          </div>
+return (
+  <div className="container-fluid p-4" style={{ backgroundColor: "#f5f7fb", minHeight: "100vh" }}>
+
+    {/* ===== Add Employee Card ===== */}
+    <div className="card border-0 shadow-sm rounded-4 p-4 mb-4">
+      <h4 className="fw-bold mb-4">Add New Employee</h4>
+
+      <div className="row g-3">
+
+        <div className="col-md-3">
+          <label className="form-label">Email</label>
+          <input
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            type="email"
+            className="form-control rounded-3"
+            placeholder="name@example.com"
+          />
+        </div>
+
+        <div className="col-md-3">
+          <label className="form-label">Password</label>
+          <input
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            type="password"
+            className="form-control rounded-3"
+            placeholder="*******"
+          />
+        </div>
+
+        <div className="col-md-3">
+          <label className="form-label">Department</label>
+          <input
+            value={department}
+            onChange={(e) => setDepartment(e.target.value)}
+            type="text"
+            className="form-control rounded-3"
+            placeholder="HR, IT, Accountant..."
+          />
+        </div>
+
+        <div className="col-md-3 d-flex align-items-end gap-2">
+          <button
+            onClick={handleAddEmployee}
+            className="btn btn-primary rounded-3 w-100"
+          >
+            Add Employee
+          </button>
+
+          <button
+            onClick={handleAddDepartment}
+            className="btn btn-outline-primary rounded-3 w-100"
+          >
+            Add Dept
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+
+    {/* ===== Employee Table Card ===== */}
+    <div className="card border-0 shadow-sm rounded-4 p-4">
+
+      {/* Header Section */}
+      <div className="d-flex justify-content-between align-items-center mb-3">
+        <h5 className="fw-bold mb-0">Employee Data</h5>
+
+        <div className="d-flex gap-2">
+          <input
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            type="text"
+            className="form-control rounded-3"
+            placeholder="Search by role"
+          />
+
+          <button
+            className="btn btn-primary rounded-3"
+            onClick={handleFetchEmployeeByRole}
+          >
+            Search
+          </button>
+
+          <button
+            onClick={() => {
+              if (users.length === 5) setSkip(skip + 5);
+              else alert("All documents shown");
+            }}
+            className="btn btn-outline-secondary rounded-3"
+          >
+            +
+          </button>
+
+          <button
+            onClick={() => {
+              if (skip >= 5) setSkip(skip - 5);
+              else alert("Limit reached");
+            }}
+            className="btn btn-outline-secondary rounded-3"
+          >
+            -
+          </button>
         </div>
       </div>
 
-      <div className='container shadow w-100 p-3 mt-4 '>
-        <div className='d-flex justify-content-between'>
-          <h2>Employee Data</h2>
-          <div>
-            <input value={search} onChange={(e)=>setSearch(e.target.value)} type="text" placeholder='fetched employee by role' />
-            <button className='btn btn-primary ms-2' onClick={handleFetchEmployeeByRole}>Search</button>
-
-            <button onClick={()=>{if(users.length==5){setSkip(skip+5)}else{alert("all documents already shown")}}} className='ms-2 btn btn-primary'>++</button>
-            <button onClick={()=>{if(skip>=5){setSkip(skip-5)}else{alert("limit reached")}}} className='btn btn-primary ms-2'>--</button>
-            </div>
-        </div>
-        <table className="table table-hover">
-          <thead>
+      {/* Table */}
+      <div className="table-responsive">
+        <table className="table table-hover align-middle">
+          <thead className="table-light">
             <tr>
-              <th scope="col">#</th>
-              <th scope="col">Name</th>
-              <th scope="col">Email</th>
-              <th scope="col">Role</th>
-              <th scope="col">Action</th>
+              <th>#</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th className="text-center">Action</th>
             </tr>
           </thead>
-          <tbody>{
-            users.length==0?
-            <tr>
-              <td></td>
-              <td></td>
-              <td>No Employee Available</td>
-              <td></td>
-              <td></td>
-            </tr>
-            :
-            users.map((user, i) =>
-              <tr key={i}>
-                <th scope="row">{i + 1}</th>
-                <td>{user?.user?.name ? user.user.name : "Not assign"}</td>
-                <td>{user.email}</td>
-                <td>{user?.user?.role ? user.user.role : "Not assign"}</td>
-                <td>
-                  <button onClick={() => {
-                    navigate("/edit-emp", { state: user });
-                  }} className='btn btn-warning'>Edit</button>
-                  <button onClick={() => handleDelete(user._id)} className='btn btn-danger ms-2'>Delete</button>
+
+          <tbody>
+            {users.length === 0 ? (
+              <tr>
+                <td colSpan="5" className="text-center text-muted">
+                  No Employee Available
                 </td>
               </tr>
+            ) : (
+              users.map((user, i) => (
+                <tr key={i}>
+                  <td>{i + 1}</td>
+                  <td>{user?.user?.name || "Not Assigned"}</td>
+                  <td>{user.email}</td>
+                  <td>
+                    <span className="badge bg-secondary">
+                      {user?.user?.role || "Not Assigned"}
+                    </span>
+                  </td>
+                  <td className="text-center">
+                    <button
+                      onClick={() => navigate("/edit-emp", { state: user })}
+                      className="btn btn-sm btn-warning rounded-3"
+                    >
+                      Edit
+                    </button>
+                    <button
+                      onClick={() => handleDelete(user._id)}
+                      className="btn btn-sm btn-danger rounded-3 ms-2"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))
             )}
           </tbody>
+
         </table>
       </div>
     </div>
-  )
+  </div>
+);
+  
 }

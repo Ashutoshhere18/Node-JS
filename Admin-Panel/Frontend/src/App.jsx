@@ -12,6 +12,8 @@ import AboutPage from './pages/AboutPage'
 import ProtectedRoute from './components/ProtectedRoute'
 import AddEmployee from './components/AddEmployee'
 import EditEmployee from './components/EditEmployee'
+import ComplaintDashboard from "./pages/ComplaintDashboard";
+import ComplaintPage from "./pages/ComplaintPage";
 
 function App() {
  
@@ -31,6 +33,8 @@ function App() {
         <Route path='/AboutPage' element={<ProtectedRoute><AboutPage/></ProtectedRoute>}/>
         <Route path='/Add-employee' element={<ProtectedRoute><AddEmployee/></ProtectedRoute>}/>
         <Route path='/edit-emp' element={<ProtectedRoute><EditEmployee/></ProtectedRoute>}/>
+        <Route path='/complaint-dashboard' element={<ProtectedRoute><ComplaintDashboard/></ProtectedRoute>}/>
+        <Route path='/complaints' element={<ProtectedRoute><ComplaintPage/></ProtectedRoute>}/>
       </Routes>
     </>
   )

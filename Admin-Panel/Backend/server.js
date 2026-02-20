@@ -2,6 +2,7 @@ import express from 'express'
 import router from './routes/auth-routes.js'
 import adminRoute from './routes/admin-routes.js'
 import selectionRoute from './routes/selection-routes.js'
+import complaintRoutes from "./routes/complaint-routes.js";
 import dotenv from 'dotenv'
 import {connectDB} from './config/db.js'
 import cookieParser from 'cookie-parser'
@@ -20,6 +21,7 @@ connectDB();
 app.use("/api/auth",router);
 app.use("/api/admin",adminRoute);
 app.use("/api/selection",selectionRoute);
+app.use("/api/complaints", complaintRoutes);
 
 
 
