@@ -11,7 +11,7 @@ export default function ForgotPassword() {
 
   const handleForgotPassword = async () => {
     try {
-      const res = await axios.post(`${base_uri}/auth/forgotPassword`, { email });
+      const res = await axios.post(`${base_uri}/auth/forgotPassword`, { email }, { withCredentials: true });
       alert(res.data.message);
       if (res.data.status) {
         Navigate("/ChangeForgotPassword");

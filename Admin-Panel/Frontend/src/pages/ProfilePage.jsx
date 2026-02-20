@@ -42,146 +42,107 @@ export default function Profile() {
   };
 
   return (
-    <div className="container-fluid bg-light min-vh-100 p-5">
+  <div
+    className="container-fluid p-5"
+    style={{ backgroundColor: "#f5f7fb", minHeight: "100vh" }}
+  >
+    <h3 className="fw-bold mb-4">My Profile</h3>
 
-      <h3 className="fw-bold mb-3">My Profile</h3>
+    <div className="row g-4">
 
-      <div className="row g-4">
+      {/* ===== Left Profile Card ===== */}
+      <div className="col-md-4">
+        <div className="card border-0 shadow-sm rounded-4 p-4 text-center profile-card">
 
-        {/* ===== Left Card ===== */}
-        <div className="col-md-4">
-          <div className="card border-0 shadow-sm rounded-4 p-4 text-center">
+          <div className="position-relative d-inline-block">
             <img
               src={currentUser.image || "https://i.pravatar.cc/150"}
-              className="rounded-circle mb-3"
-              width="120"
-              height="120"
+              className="rounded-circle profile-img"
               alt="profile"
             />
-
-            <h5>{currentUser.name || "Your Name"}</h5>
-            <p className="text-muted">{currentUser.role || "User"}</p>
-
-            <button
-              className="btn btn-primary w-100"
-              onClick={handleUpdateProfile}
-            >
-              Update Profile
-            </button>
           </div>
+
+          <h5 className="mt-3 mb-1">
+            {currentUser.name || "Your Name"}
+          </h5>
+
+          <p className="text-muted mb-3">
+            {currentUser.role || "User"}
+          </p>
+
+          <button
+            className="btn btn-primary rounded-3 w-100"
+            onClick={handleUpdateProfile}
+          >
+            Save Changes
+          </button>
         </div>
-
-        {/* ===== Right Section ===== */}
-        <div className="col-md-8">
-          <div className="card border-0 shadow-sm rounded-4 p-4">
-
-            <div className="row g-3">
-
-              <div className="col-md-6">
-                <label className="form-label">Name</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={currentUser.name || ""}
-                  onChange={(e) =>
-                    setCurrentUser({
-                      ...currentUser,
-                      name: e.target.value
-                    })
-                  }
-                />
-              </div>
-
-              <div className="col-md-6">
-                <label className="form-label">Email</label>
-                <input
-                  type="email"
-                  className="form-control"
-                  value={currentUser.email || ""}
-                  readOnly
-                />
-              </div>
-
-              <div className="col-md-6">
-                <label className="form-label">Phone</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={currentUser.phone || ""}
-                  onChange={(e) =>
-                    setCurrentUser({
-                      ...currentUser,
-                      phone: e.target.value
-                    })
-                  }
-                />
-              </div>
-
-              <div className="col-md-6">
-                <label className="form-label">Age</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={currentUser.age || ""}
-                  onChange={(e) =>
-                    setCurrentUser({
-                      ...currentUser,
-                      age: e.target.value
-                    })
-                  }
-                />
-              </div>
-
-              <div className="col-md-6">
-                <label className="form-label">Education</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={currentUser.education || ""}
-                  onChange={(e) =>
-                    setCurrentUser({
-                      ...currentUser,
-                      education: e.target.value
-                    })
-                  }
-                />
-              </div>
-
-              <div className="col-md-6">
-                <label className="form-label">Experience</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={currentUser.exp || ""}
-                  onChange={(e) =>
-                    setCurrentUser({
-                      ...currentUser,
-                      exp: e.target.value
-                    })
-                  }
-                />
-              </div>
-
-              <div className="col-md-12">
-                <label className="form-label">Address</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={currentUser.address || ""}
-                  onChange={(e) =>
-                    setCurrentUser({
-                      ...currentUser,
-                      address: e.target.value
-                    })
-                  }
-                />
-              </div>
-
-            </div>
-          </div>
-        </div>
-
       </div>
+
+
+      {/* ===== Right Details Section ===== */}
+      <div className="col-md-8">
+        <div className="card border-0 shadow-sm rounded-4 p-4 profile-card">
+
+          <div className="row g-4">
+
+            {[
+              { label: "Name", field: "name", type: "text" },
+              { label: "Phone", field: "phone", type: "text" },
+              { label: "Age", field: "age", type: "text" },
+              { label: "Education", field: "education", type: "text" },
+              { label: "Experience", field: "exp", type: "text" },
+            ].map((item, index) => (
+              <div className="col-md-6" key={index}>
+                <label className="form-label text-muted">
+                  {item.label}
+                </label>
+                <input
+                  type={item.type}
+                  className="form-control rounded-3 profile-input"
+                  value={currentUser[item.field] || ""}
+                  onChange={(e) =>
+                    setCurrentUser({
+                      ...currentUser,
+                      [item.field]: e.target.value,
+                    })
+                  }
+                />
+              </div>
+            ))}
+
+            {/* Email (Read Only) */}
+            <div className="col-md-6">
+              <label className="form-label text-muted">Email</label>
+              <input
+                type="email"
+                className="form-control rounded-3 bg-light"
+                value={currentUser.email || ""}
+                readOnly
+              />
+            </div>
+
+            {/* Address */}
+            <div className="col-md-12">
+              <label className="form-label text-muted">Address</label>
+              <input
+                type="text"
+                className="form-control rounded-3 profile-input"
+                value={currentUser.address || ""}
+                onChange={(e) =>
+                  setCurrentUser({
+                    ...currentUser,
+                    address: e.target.value,
+                  })
+                }
+              />
+            </div>
+
+          </div>
+        </div>
+      </div>
+
     </div>
-  );
+  </div>
+);
 }
