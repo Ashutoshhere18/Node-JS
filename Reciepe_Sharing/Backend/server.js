@@ -10,16 +10,15 @@ dotenv.config();
 
 const app = express();
 
-app.use(express.json());
-app.use(cookieParser());
-app.use("/api/auth", authRoutes);
-app.use("/api/recipes", recipeRoutes);
-
-
 app.use(cors({
     origin: "http://localhost:5173",
     credentials: true
 }));
+
+app.use(express.json());
+app.use(cookieParser());
+app.use("/api/auth", authRoutes);
+app.use("/api/recipes", recipeRoutes);
 
 mongoose.connect("mongodb://127.0.0.1:27017/recipeDB")
 .then(() => console.log("MongoDB Connected"))
