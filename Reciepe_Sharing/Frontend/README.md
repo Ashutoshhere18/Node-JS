@@ -1,16 +1,107 @@
-# React + Vite
+# 🍲 Recipe Sharing Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack Recipe Sharing Platform built using **MERN Stack (MongoDB, Express, React, Node.js)** with JWT Authentication, Cookie-based session handling, Role-Based Access Control, Multi-user support, and Bootstrap UI.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📌 Project Features
 
-## React Compiler
+### 🔐 Authentication & Authorization
+- User Registration
+- User Login
+- Password Hashing using bcrypt
+- JWT Token Generation
+- Token stored in HTTP-only Cookies
+- Logout functionality
+- Role-Based Access Control (Admin / User)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 👥 Multi-User Support
+- Each user can create their own recipes
+- Users can view only their recipes
+- Admin can delete any recipe
+- Role stored inside JWT
 
-## Expanding the ESLint configuration
+### 🍽 Recipe Management
+- Add Recipe
+- View All Recipes
+- View My Recipes
+- Delete Recipe (Admin only)
+- MongoDB Populate used to show recipe creator
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 💬 Comment System
+- Add comment to a recipe
+- View comments for a recipe
+- Comments linked with User and Recipe
+- Populate used to show comment author
+
+### 🎨 UI Features
+- Built using React (JSX)
+- Bootstrap based clean layout
+- Culinary themed navbar
+- Simple and responsive card design
+
+---
+🎥 Screen Recording
+
+
+
+
+---
+
+## 🏗 Tech Stack
+
+### Frontend
+- React (Vite)
+- React Router DOM
+- Axios
+- Bootstrap 5
+
+### Backend
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- JWT
+- bcryptjs
+- cookie-parser
+- CORS
+- dotenv
+
+---
+
+## 📂 Project Structure
+
+
+recipe-platform/
+│
+├── backend/
+│ ├── models/
+│ ├── controllers/
+│ ├── routes/
+│ ├── middleware/
+│ ├── server.js
+│
+├── frontend/
+│ ├── src/
+│ │ ├── components/
+│ │ ├── pages/
+│ │ ├── App.jsx
+│ │ ├── main.jsx
+
+
+---
+
+
+🎯 Learning Outcomes
+
+Implemented JWT Authentication with Cookies
+
+Used Role-Based Access Control
+
+Applied MVC Architecture
+
+Used MongoDB Populate for relational data
+
+Built Full Stack MERN Application
+
+Integrated Backend and Frontend securely.
